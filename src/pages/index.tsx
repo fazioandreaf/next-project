@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 
+import {getFeaturedEvents} from '../dummy-data'
+import EventList from './../components/event-list/EventList';
+
 export default function Home() {
+
+  const featureEvents = getFeaturedEvents();
+
   return (
     <div className={styles.main}>
-      <ul>
-        <li>
-          <Link href="/portfolio">Portfolio page</Link>
-        </li>
-      </ul>
+      <EventList items={featureEvents} />
     </div>
   )
 }
