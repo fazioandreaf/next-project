@@ -72,3 +72,8 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+* {
+  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

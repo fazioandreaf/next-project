@@ -1,4 +1,8 @@
-import Link from 'next/link';
+import DateIcon from './../../../public/icons/date-icon';
+import ArrowRightIcon from './../../../public/icons/arrow-right-icon';
+import AddressIcon from './../../../public/icons/address-icon';
+
+import Button from './../Button';
 
 import styles from './EventItem.module.scss';
 
@@ -12,19 +16,26 @@ const EventItem = (props) => {
 	});
 	const formattedAddress = location.replace(', ', '/n');
 
-	const exploreLink = `/events/'${id}`;
+	const exploreLink = `/events/${id}`;
 	return (
 		<li className={styles['event-item--li']}>
 			<img src={image} alt={title} className={styles['event-item--img']} />
 			<div className={styles['event-item--content']}>
 				<h2 className={styles['event-item--h2']}>{title}</h2>
 				<div>
+					<DateIcon />
 					<time className={styles['event-item--time']}>{humanReadableData}</time>
 				</div>
-				<address className={styles['event-item--address']}>{formattedAddress}</address>
+				<div className={styles['event-item--address']}>
+					<AddressIcon />
+					<address>{formattedAddress}</address>
+				</div>
 			</div>
 			<div className={styles['event-item--link']}>
-				<Link href={exploreLink}>Explore event</Link>
+				<Button href={exploreLink}>
+					Explore event
+					<ArrowRightIcon />
+				</Button>
 			</div>
 		</li>
 	);
