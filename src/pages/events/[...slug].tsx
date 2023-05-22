@@ -1,5 +1,7 @@
 import { getFilteredEvents } from "@/dummy-data"
 import { useRouter } from "next/router"
+import Head from "next/head";
+
 
 import ResultsTitle from "@/components/results-title/results-title";
 import EventList from "@/components/event-list/EventList";
@@ -18,17 +20,26 @@ const Detail = () => {
 
   const filteredEvents = getFilteredEvents({year:filterDate[0], month:filterDate[1]});
 
-  return (!filteredEvents ?
-    <p>No event found for the chosen filter</p>
-    : (
-      <div>
-        <h1>
-          Filter event
-        </h1>
-        <ResultsTitle date={new Date(yearNum, monthNum - 1)} />
-        <EventList items={filteredEvents} />
-      </div>
-    )
+  return (
+    <>
+    <Head>
+      <title>
+        Filtered Events
+      </title>
+      <meta name="description" content={`All events for ${monthNum}/${yearNum}`} />
+    </Head>
+    {!filteredEvents ?
+      <p>No event found for the chosen filter</p>
+      : (
+        <div>
+          <h1>
+            Filter event
+          </h1>
+          <ResultsTitle date={new Date(yearNum, monthNum - 1)} />
+          <EventList items={filteredEvents} />
+        </div>
+    )}
+    </>
   )
 }
 
